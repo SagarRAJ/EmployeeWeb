@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/NetBeansProject/EmployeeWeb/web/searchemployee.jsp</file>
+            <file>file:/D:/NetBeansProject/EmployeeWeb/src/java/com/exavalu/services/UserService.java</file>
+            <file>file:/D:/NetBeansProject/EmployeeWeb/src/java/com/exavalu/entities/Employee.java</file>
+            <file>file:/D:/NetBeansProject/EmployeeWeb/web/editemployee.jsp</file>
+            <file>file:/D:/NetBeansProject/EmployeeWeb/src/java/com/exavalu/servlets/SearchEmployee.java</file>
+            <file>file:/D:/NetBeansProject/EmployeeWeb/web/WEB-INF/web.xml</file>
+            <file>file:/D:/NetBeansProject/EmployeeWeb/src/java/com/exavalu/services/EmployeeService.java</file>
+            <file>file:/D:/NetBeansProject/EmployeeWeb/src/java/com/exavalu/servlets/Login.java</file>
+            <file>file:/D:/NetBeansProject/EmployeeWeb/web/menu.jsp</file>
+            <file>file:/D:/NetBeansProject/EmployeeWeb/web/home.jsp</file>
+        </group>
+    </open-files>
+</project-private>
