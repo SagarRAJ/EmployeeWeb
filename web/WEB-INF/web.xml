@@ -41,6 +41,10 @@
         <servlet-name>SearchEmployee</servlet-name>
         <servlet-class>com.exavalu.servlets.SearchEmployee</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddEmployee</servlet-name>
+        <servlet-class>com.exavalu.servlets.AddEmployee</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>action</servlet-name>
         <url-pattern>*.do</url-pattern>
@@ -68,6 +72,10 @@
     <servlet-mapping>
         <servlet-name>SearchEmployee</servlet-name>
         <url-pattern>/SearchEmployee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddEmployee</servlet-name>
+        <url-pattern>/AddEmployee</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -4,11 +4,15 @@
  */
 package com.exavalu.servlets;
 
-import com.exavalu.entities.User;
-import com.exavalu.services.EmployeeService;
+import com.exavalu.services.DepartmentService;
+import com.exavalu.services.RoleService;
 import com.exavalu.services.UserService;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,11 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Avijit
+ * @author Win10
  */
-import javax.servlet.http.HttpSession;
-
-public class Login extends HttpServlet {
+public class AddEmployee extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,42 +35,20 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Here we will do our business logic
-        //Here we should try to keep code minimise as much as possible
 
-        //Retrieve the params sent from frontend
-        String emailAddress = request.getParameter("emailAddress");
-        String password = request.getParameter("password");
+        try {
+            int add = UserService.AddEmployee(request.getParameter("firstName"), request.getParameter("lastName"), request.getParameter("address"), request.getParameter("age"), request.getParameter("phone"), request.getParameter("Gender"), request.getParameter("Department"), request.getParameter("Role"), request.getParameter("basicSalary"), request.getParameter("carAllowance"));
+        } catch (SQLException ex) {
 
-        //We will use this two params to see if user is valid or not
-        //We need to check against our database table
-        boolean result = UserService.doLogin(emailAddress, password);
-
-        if (result) {
-
-            HttpSession session = request.getSession();
-
-            User user = UserService.getUser(emailAddress);
-
-            user.setEmailAddress(emailAddress);
-            user.setPassword(password);
-
-            session.setAttribute("User", user);
-
-            //We will pick up the list of Employees from DB and send these to frontend
-            ArrayList empList = EmployeeService.getAllEmployees();
-
-            request.setAttribute("EmpList", empList);
-
-            request.getRequestDispatcher("home.jsp").forward(request, response);
-        } else {
-            String errorMsg = "Either email address or password is wrong!! Please try again";
-
-            request.setAttribute("ErrorMsg", errorMsg);
-
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-            //Why we used forward here??
         }
+
+        ArrayList deptList = DepartmentService.getAllDepartment();
+        request.setAttribute("DeptList", deptList);
+        ArrayList roleList = RoleService.getAllRoles();
+        request.setAttribute("RoleList", roleList);
+
+        request.getRequestDispatcher("addemployee.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

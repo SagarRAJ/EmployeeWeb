@@ -17,7 +17,7 @@
                 <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
                 <div class="alert alert-danger" role="alert">
-                    <%=request.getAttribute("ErrorMsg")%>
+                    ${ErrorMsg}
                 </div>
 
 

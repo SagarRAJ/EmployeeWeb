@@ -33,28 +33,25 @@ public class SignUp extends HttpServlet {
         String password = request.getParameter("password");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-        
+
         User user = new User();
         user.setEmailAddress(emailAddress);
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setPassword(password);
-        
+
         boolean result = UserService.signUp(user);
-        
-        if(result)
-        {
+
+        if (result) {
             String errorMsg = "Successfully Signed Up.";
-            
-            request.setAttribute("ErrorMsg", errorMsg);
+
+            request.setAttribute("SuccessMsg", errorMsg);
             request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
-        else
-        {
+        } else {
             String errorMsg = "Something went wrong!! Please try again";
-            
+
             request.setAttribute("ErrorMsg", errorMsg);
-            
+
             request.getRequestDispatcher("signup.jsp").forward(request, response);
             //Why we used forward here??
         }

@@ -3,6 +3,8 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="com.exavalu.entities.Employee"%>
 <%@page import="java.util.ArrayList"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+           
 <!DOCTYPE html>
 <!--
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -52,16 +54,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                             <td>
                                 <div class="form-outline">
                                     <!--                                    <input type="search" id="form4" class="form-control" name="Department" />-->
-                                <%ArrayList deptList = (ArrayList) request.getAttribute("DeptList");
-                                    Iterator it = deptList.iterator();%>
+                               
                                 <select name="Department" class="form-select" id="departmentId">
                                     <option value="">Select a Department</option>
-                                    <%
-                                        while (it.hasNext()) {
-                                            Department dept = (Department) it.next();
-                                    %>
-                                    <option value="<%=dept.getDepartmentName()%>"> <%=dept.getDepartmentName()%>  </option>
-                                    <% } %>
+
+                                    <c:forEach items="${DeptList}" var="dept">
+                                    <option value="${dept.getDepartmentName()}"> ${dept.getDepartmentName()}  </option>
+                                    </c:forEach>
+                                    
                                 </select>
                                 
                             </div>
@@ -69,16 +69,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                         <td>
                             <div class="form-outline">
                                 
-                                <%ArrayList roleList = (ArrayList) request.getAttribute("RoleList");
-                                    Iterator i = roleList.iterator();%>
+                               
                                 <select name="Role" class="form-select" id="roleId">
                                     <option value="">Select a Role</option>
-                                    <%
-                                        while (i.hasNext()) {
-                                            Role role = (Role) i.next();
-                                    %>
-                                    <option value="<%=role.getRoleName()%>"> <%=role.getRoleName()%>  </option>
-                                    <% } %>
+                                  
+                                    <c:forEach items="${RoleList}" var="role">
+                                    <option value="${role.getRoleName()}"> ${role.getRoleName()} </option>
+                                    </c:forEach>
                                 </select>
                                 
                             </div>
@@ -90,9 +87,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 </button>
             </form>
         </div>
-        <% ArrayList empList = (ArrayList) request.getAttribute("EmpList");
-            Iterator itr = empList.iterator();
-        %>
+        
 
         <div class="table-responsive">
             <table class="table table-hover">
@@ -137,56 +132,53 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 
                     </tr>
                 </thead>
-                <%
-                    while (itr.hasNext()) {
-                        Employee emp = (Employee) itr.next();
-                %>
-                <tr>
-                    <td>
-                        <%=emp.getEmployeeId()%>
-                    </td>
-                    <td>
-                        <%=emp.getFirstName()%>
-                    </td>
-                    <td>
-                        <%=emp.getLastName()%>
-                    </td>
-                    <td>
-                        <%=emp.getAddress()%>
-                    </td>
-                    <td>
-                        <%=emp.getPhone()%>
-                    </td>
-                    <td>
-                        <%=emp.getGender()%>
-                    </td>
-                    <td>
-                        <%=emp.getAge()%>
-                    </td>
-                    <td>
-                        <%=emp.getDepartmentName()%>
-                    </td>
-                    <td>
-                        <%=emp.getRoleName()%>
-                    </td>
-                    <td>
-                        <%=emp.getBasicSalary()%>
-                    </td>
-                    <td>
-                        <%=emp.getCarAllaowance()%>
-                    </td>
-                    <td> 
+                
+                <c:forEach items="${EmpList}" var="emp">
+                    <tr>
+                        <td>
+                            ${emp.getEmployeeId()}
+                        </td>
+                        <td>
+                            ${emp.getFirstName()}
+                        </td>
+                        <td>
+                            ${emp.getLastName()}
+                        </td>
+                        <td>
+                            ${emp.getAddress()}
+                        </td>
+                        <td>
+                            ${emp.getPhone()}
+                        </td>
+                        <td>
+                            ${emp.getGender()}
+                        </td>
+                        <td>
+                            ${emp.getAge()}
+                        </td>
+                        <td>
+                            ${emp.getDepartmentName()}
+                        </td>
+                        <td>
+                            ${emp.getRoleName()}
+                        </td>
+                        <td>
+                            ${emp.getBasicSalary()}
+                        </td>
+                        <td>
+                            ${emp.getCarAllaowance()}
+                        </td>
+                        <td> 
 
-                        <a href=EditEmployee?employeeId=<%=emp.getEmployeeId()%>>
-                            Edit
-                        </a>
+                            <a href=EditEmployee?employeeId=${emp.getEmployeeId()}>
+                                Edit
+                            </a>
 
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                </c:forEach>
 
-                <%
-                    }
-                %>
+                
 
             </table>
         </div>
